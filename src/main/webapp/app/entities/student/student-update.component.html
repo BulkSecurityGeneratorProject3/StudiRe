@@ -1,0 +1,107 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-student-heading" jhiTranslate="studiReApp.student.home.createOrEditLabel">Create or edit a Student</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!student.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="student.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="studiReApp.student.matrikelnummer" for="field_matrikelnummer">Matrikelnummer</label>
+                    <input type="number" class="form-control" name="matrikelnummer" id="field_matrikelnummer"
+                        [(ngModel)]="student.matrikelnummer" required/>
+                    <div [hidden]="!(editForm.controls.matrikelnummer?.dirty && editForm.controls.matrikelnummer?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.matrikelnummer?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.matrikelnummer?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="studiReApp.student.nachname" for="field_nachname">Nachname</label>
+                    <input type="text" class="form-control" name="nachname" id="field_nachname"
+                        [(ngModel)]="student.nachname" required minlength="3"/>
+                    <div [hidden]="!(editForm.controls.nachname?.dirty && editForm.controls.nachname?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.nachname?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.nachname?.errors?.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 3 }">
+                        This field is required to be at least 3 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="studiReApp.student.vorname" for="field_vorname">Vorname</label>
+                    <input type="text" class="form-control" name="vorname" id="field_vorname"
+                        [(ngModel)]="student.vorname" required minlength="3"/>
+                    <div [hidden]="!(editForm.controls.vorname?.dirty && editForm.controls.vorname?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.vorname?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.vorname?.errors?.minlength" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: 3 }">
+                        This field is required to be at least 3 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="studiReApp.student.adresse" for="field_adresse">Adresse</label>
+                    <input type="text" class="form-control" name="adresse" id="field_adresse"
+                        [(ngModel)]="student.adresse" required/>
+                    <div [hidden]="!(editForm.controls.adresse?.dirty && editForm.controls.adresse?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.adresse?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="studiReApp.student.postleitzahl" for="field_postleitzahl">Postleitzahl</label>
+                    <input type="number" class="form-control" name="postleitzahl" id="field_postleitzahl"
+                        [(ngModel)]="student.postleitzahl" required/>
+                    <div [hidden]="!(editForm.controls.postleitzahl?.dirty && editForm.controls.postleitzahl?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.postleitzahl?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.postleitzahl?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="studiReApp.student.ort" for="field_ort">Ort</label>
+                    <input type="text" class="form-control" name="ort" id="field_ort"
+                        [(ngModel)]="student.ort" required/>
+                    <div [hidden]="!(editForm.controls.ort?.dirty && editForm.controls.ort?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.ort?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
